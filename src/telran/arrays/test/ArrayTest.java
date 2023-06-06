@@ -3,6 +3,7 @@ package telran.arrays.test;
 import org.junit.jupiter.api.Test;
 
 import telran.arrays.ArraysInt;
+import telran.arrays.MatricesInt;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -167,4 +168,52 @@ public class ArrayTest {
 		return res - 1;
 	}
 
+	@Test
+	void binarySearchNumberTest() {
+		int[] arr = {2,3,4,4,4,6,7,7,7,7,7,8,8,9,23};
+		
+		//assertEquals(-1, ArraysInt.binarySearchNumber(arr, 1));
+		//assertEquals(-6, ArraysInt.binarySearchNumber(arr, 5));
+		//assertEquals(-15, ArraysInt.binarySearchNumber(arr, 25));
+		assertEquals(14, ArraysInt.binarySearchNumber(arr, 23));
+		
+	}
+	
+	@Test
+	void multiplyConstantTest() {
+		int[][] src = {
+				{1, 10,  25},
+				{30, 10, 15}
+		};
+		int[][] exp = {
+				{2, 20, 50},
+				{60, 20, 30}
+		};
+		
+		assertArrayEquals(exp, MatricesInt.multiplyConstant(src, 2));
+	}
+	
+	@Test
+	void getColumnTest() {
+		int[][] src = {
+				{1, 10,  25},
+				{30, 10, 15}
+		};
+		int[] expected = {1,30};
+		assertArrayEquals(expected, MatricesInt.getColumn(src, 0));
+	}
+	
+	@Test
+	void transpMatrixTest() {
+		int[][] src =  {
+				{1,10, 25},
+				{30,10,15}
+		};
+		int[][] expected = {
+				{1,30},
+				{10,10},
+				{25,15}
+		};
+		assertArrayEquals(expected, MatricesInt.transpMatrix(src));
+	}
 }
