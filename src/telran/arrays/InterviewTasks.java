@@ -46,14 +46,40 @@ static public boolean isSumTwo(short[] array, short sum){
 //O[N] complexity
 //use helper array of integers
 static public void sort(short[] array) {
-	//TODO	
+	int[] helper = new int[Short.MAX_VALUE + 1];
+	for (int i = 0; i < array.length; i++){
+		helper[array[i]]++;
+	}	
+	int count = 0;
+	for (int i = 0; i < helper.length; i++) {
+		for(int j = 0; j < helper[i]; j ++) {
+			array[count] = (short)i;
+			count++;
+		}
+	}
 }
 
 //returns max positive number having a negative value with same abs value if exists
 //else returns -1  
 static public short getMaxWithNegativePresentation(short[] array) {
-	//TODO
-	return -1;
+	short[] helper = new short[Short.MAX_VALUE + 1];
+	short res = -1;
+	for(int i = 0; i < array.length; i++) {
+		if  (array[i] > 0 && helper[array[i]] != 1 && helper[array[i]] != 3) {
+			helper[array[i]] += 1;
+		}else if (array[i] < 0 && helper[-array[i]] != 2 && helper[-array[i]] != 3) {
+			helper[-array[i]] += 2;
+		}
+	}
+	boolean isFound = false;
+	int i = Short.MAX_VALUE;
+	while(!isFound && i > 0) {
+		if (helper[i] == 3) {
+			isFound = true;
+			res = helper[i];
+		}
+	}
+	return i > 0 ? res : -1;
 }
 
 }
